@@ -113,8 +113,6 @@ CREATE TABLE IF NOT EXISTS consultation (
 );
 """)
 
-
-
 mycursor.execute("""
 CREATE TABLE IF NOT EXISTS pet_records (
   record_id INT AUTO_INCREMENT PRIMARY KEY,
