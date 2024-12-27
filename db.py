@@ -17,17 +17,24 @@ mycursor = mydb.cursor()
  
  
 mycursor.execute("""
-CREATE TABLE IF NOT EXISTS  address (
-  address_id INT AUTO_INCREMENT PRIMARY KEY
-);                 
-""") 
+CREATE TABLE IF NOT EXISTS address (
+    address_id INT AUTO_INCREMENT PRIMARY KEY,
+    number VARCHAR(255),
+    street VARCHAR(255),
+    barangay VARCHAR(255),
+    city VARCHAR(255),
+    province VARCHAR(255),
+    postal_code VARCHAR(10)
+);
+""")
  
 mycursor.execute("""
 CREATE TABLE IF NOT EXISTS pet_owners (
   user_id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(255) NOT NULL, 
   last_name VARCHAR(255) NOT NULL, 
-  email VARCHAR(255) NOT NULL, 
+  email VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL, 
   password VARCHAR(255) NOT NULL,
   address_id INT NOT NULL,
   FOREIGN KEY (address_id) REFERENCES address(address_id) 
@@ -68,6 +75,7 @@ CREATE TABLE IF NOT EXISTS veterinarian (
   first_name VARCHAR(255) NOT NULL, 
   last_name VARCHAR(255) NOT NULL, 
   email VARCHAR(255) NOT NULL, 
+  username VARCHAR(255) NOT NULL, 
   password VARCHAR(255) NOT NULL,
   specialization VARCHAR(255) NOT NULL,
   verification_status INT NOT NULL,
