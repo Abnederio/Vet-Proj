@@ -23,8 +23,10 @@ class Clinic:
         phone_number = form_data.get("phone_number")
         opening_hours = form_data.get("opening_hours")
         closing_hours = form_data.get("closing_hours")
-        available_days = form_data.getlist("days")
+        days = form_data.getlist("days")
         address_data = Address.form_register(form_data)
+        
+        available_days_str = ', '.join(days) if days else ''
       
         mycursor.execute("""
             INSERT INTO address (number, street, barangay, city, province, postal_code) 
@@ -35,9 +37,9 @@ class Clinic:
         address_id = mycursor.fetchone()[0]  
         
         mycursor.execute("""
-            INSERT INTO clinic (name, veterinarian_count, phone_number, opening_hours, closing_hours, available_days, address_id)
+            INSERT INTO clinic (name, veterinarian_count, phone_number, opening_hours, closing_hours, day_name, address_id)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """, (name, None, phone_number, opening_hours, closing_hours, ', '.join(available_days), address_id))
+        """, (name, None, phone_number, opening_hours, closing_hours, available_days_str, address_id))
 
         mydb.commit()
         mycursor.close()
