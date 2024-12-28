@@ -11,11 +11,15 @@ def petOwnerRegisterLink():
     return render_template("user_registration.html", name = name)
 
 #User Registration
-@app.route("/userRegistration", methods=["GET", "POST"])
+@app.route("/userRegistration", methods=["POST","GET"])
 def petOwnerRegisterReceived():
-    form_data = request.form
-    Pet_owners.form_register(form_data)
+    if request.method == "POST":
+        form_data = request.form
+        Pet_owners.form_register(form_data)
+    return render_template("user_registration.html")
+        
     
+
     
     
     

@@ -1,12 +1,15 @@
 import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="abc123",
-  database="telemed"
-)
+def get_db_connection():
+  mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="abc123",
+    database="telemed"
+  )
+  return mydb
 
+mydb = get_db_connection()
 mycursor = mydb.cursor()
 
 #mycursor.execute("CREATE DATABASE telemed") #DATABASE CREATION
