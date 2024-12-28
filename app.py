@@ -7,9 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def petOwnerRegisterLink():
     
-    name = request.args.get("name", "world")
-    
-    return render_template("user_registration.html", name = name)
+    return render_template("user_registration.html")
 
 #User Registration
 @app.route("/userRegistration", methods=["POST","GET"])
@@ -19,7 +17,17 @@ def petOwnerRegisterReceived():
         Pet_owners.form_register(form_data)
         Address.form_register(form_data)
         
-    return render_template("user_registration.html")
+    return render_template("layout.html")
+
+@app.route("/userManager")
+def manageUser():
+    
+    user_data = Pet_owners.retrieve_users()
+    
+    return render_template("user_manager.html", users = user_data)
+
+
+
         
     
 

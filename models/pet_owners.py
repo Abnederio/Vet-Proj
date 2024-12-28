@@ -38,7 +38,24 @@ class Pet_owners(Person):
         """, (first_name, last_name, email, username, password, address_id))
 
         mydb.commit()
+        mycursor.close()
         mydb.close()
+        
+    @classmethod
+    def retrieve_users(cls):
+        mycursor.execute("SELECT * FROM pet_owners")
+        user_records = mycursor.fetchall()
+        
+        # Get column names (assuming the table schema is known)
+        column_names = [desc[0] for desc in mycursor.description]
+        
+        # Convert tuples to dictionaries
+        users = []
+        for record in user_records:
+            user = dict(zip(column_names, record))
+            users.append(user)
+        
+        return users
         
         
         
