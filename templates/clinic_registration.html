@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock %} 
+{% block body %}
+    <h1>Clinic Registration</h1>
+    <form action="/clinicRegistration" method = "POST">
+        <label for="first_name">Name: </label>
+        <input type = "text" id="name" name="name" required><br><br>
+
+        <label for="specialization">Phone Number: </label>
+        <input type="text" id="phone_number" pattern="\d+" required><br><br>
+
+        <h4>Set Operating Hours</h4>
+        <label for="working-hours">Opening Hours:</label>
+        <input type="time" id="opening-hours" name="opening-hours" required pattern="[0-9]{2}:[0-9]{2}">
+        <br><br>
+        <label for="closing-hours">Closing Hours:</label>
+        <input type="time" id="closing-hours" name="closing-hours" required pattern="[0-9]{2}:[0-9]{2}">
+        
+        <br><br>
+        <h4>Select Available Days:</h4>
+        <label>
+            <input type="checkbox" name="days" value="Monday">
+            Monday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Tuesday">
+            Tuesday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Wednesday">
+            Wednesday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Thursday">
+            Thursday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Friday">
+            Friday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Saturday">
+            Saturday
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="days" value="Sunday">
+            Sunday
+        </label>
+        <br><br>
+
+        <h3>Address</h3><br>
+
+        <label for="number">House/Unit Number: </label>
+        <input type="text" id="number" name="number" required><br><br>
+
+        <label for="street">Street: </label>
+        <input type="text" id="street" name="street" required><br><br>
+
+        <label for="barangay">Barangay: </label>
+        <input type="text" id="barangay" name="barangay" required><br><br>
+
+        <label for="city">City: </label>
+        <input type="text" id="city" name="city" required><br><br>
+
+        <label for="province">Province: </label>
+        <input type="text" id="province" name="province" required><br><br>
+
+        <label for="postal_code">Postal Code: </label>
+        <input type="text" id="postal_code" name="postal_code" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

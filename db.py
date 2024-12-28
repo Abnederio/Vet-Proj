@@ -4,7 +4,7 @@ def get_db_connection():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="abc123",
+    password="root",
     database="telemed"
   )
   return mydb
@@ -65,9 +65,12 @@ CREATE TABLE IF NOT EXISTS clinic (
   clinic_id INT AUTO_INCREMENT PRIMARY KEY,
   veterinarian_count INT,
   name VARCHAR(255) NOT NULL, 
-  address VARCHAR(255) NOT NULL, 
-  phone_number VARCHAR(20) NOT NULL, 
-  operating_hours TIME NOT NULL
+  address_id INT NOT NULL, 
+  phone_number VARCHAR(20) NOT NULL,
+  day_name ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+  opening_hours TIME NOT NULL,
+  closing_hours TIME NOT NULL,
+  FOREIGN KEY (address_id) REFERENCES address(address_id) 
 );
 """)
 
