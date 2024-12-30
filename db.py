@@ -12,6 +12,7 @@ def get_db_connection():
 mydb = get_db_connection()
 mycursor = mydb.cursor()
 
+
 #mycursor.execute("CREATE DATABASE telemed") #DATABASE CREATION
 
 #mycursor.execute("SHOW DATABASES")

@@ -1,9 +1,9 @@
 from models.person import Person
-
 from db import get_db_connection
 
 mydb = get_db_connection()
 mycursor = mydb.cursor()
+mycursor_dict = mydb.cursor(dictionary=True)
 
 class Pet_owners(Person):
     def __init__(self, first_name, last_name, email, username, password, user_id, address_id):
@@ -21,6 +21,9 @@ class Pet_owners(Person):
         email = form_data.get("email")
         username = form_data.get("username")
         password = form_data.get("password")
+        
+        if cls.checkUserduplication(username, email):
+            raise ValueError("Username or Email already exists") #placeholder
         
         address_data = Address.form_register(form_data)
       
@@ -56,6 +59,21 @@ class Pet_owners(Person):
             users.append(user)
         
         return users
+    
+    @classmethod
+    def checkUserduplication(cls, username, email):
+        
+        mycursor_dict.execute("SELECT * FROM pet_owners WHERE username = %s", (username,))
+        user_duplicate = mycursor_dict.fetchone()
+        
+        mycursor_dict.execute("SELECT * FROM pet_owners WHERE email = %s", (email,))
+        email_duplicate = mycursor_dict.fetchone()
+        
+        if user_duplicate or email_duplicate:
+            return True  
+        else:
+            return False 
+        
         
         
         
